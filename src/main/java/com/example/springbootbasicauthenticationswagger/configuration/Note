@@ -1,0 +1,97 @@
+- - - - - - - - - - - - -
+
+SecurityConfiguration 1-)
+
+                                        @EnableWebSecurity nedir ?
+
+Bir Spring Boot uygulamasında web güvenliğini etkinleştirmek için kullanışlı bir ek açıklamadır. Uygulamanızı
+yetkisiz erişimden korumak için güvenlik kurallarını ve kimlik doğrulama mekanizmalarını yapılandırmanıza olanak tanır.
+
+                  Peki şöyle bir soru sorsam @EnableWebSecurity kullanmak zorundamıyım ?
+
+@EnableWebSecurity kullanmak zorunda değilsiniz, ancak web güvenliğini etkinleştirmek ve uygulamanızdaki URL'leri
+korumak için güvenlik kurallarını yapılandırmak için uygun bir yoldur. Bu ek açıklamayı kullanmazsanız, bir
+WebSecurityConfigurer sağlayarak veya WebSecurityConfigurerAdapter'ı genişleterek ve gerekli yöntemleri uygulayarak
+Spring Security'yi uygulamanızda manuel olarak yapılandırmanız gerekecektir.
+
+Alternatif olarak, uygulamanızda @EnableWebSecurity ek açıklamasını otomatik olarak uygulayacak ve varsayılan bir
+güvenlik yapılandırması sağlayacak olan spring-boot-starter-security başlangıç bağımlılığını kullanabilirsiniz. Bu,
+herhangi bir ek yapılandırma kodu yazmak zorunda kalmadan uygulamanıza temel güvenlik eklemenin hızlı ve kolay
+bir yolu olabilir.
+
+Genel olarak, uygulamanızda @EnableWebSecurity kullanıp kullanmamanız, özel güvenlik gereksinimlerinize ve
+güvenlik yapılandırması üzerinde ne kadar kontrol istediğinize bağlı olacaktır. Uygulamanıza yalnızca temel
+güvenlik eklemek istiyorsanız ve güvenlik kurallarını özelleştirmeniz gerekmiyorsa, spring-boot-starter-security
+bağımlılığını kullanmak en iyi seçenek olabilir. Aksi takdirde, web güvenliğini etkinleştirmek ve güvenlik
+yapılandırmasını gerektiği gibi özelleştirmek için @EnableWebSecurity kullanabilirsiniz.
+
+- - - - - - - - - - - - -
+
+SecurityConfiguration 2-)
+
+                                    HttpSecurty nedir ?
+
+HttpSecurity bir Spring Boot uygulamasında URL'leri korumak için güvenlik kurallarını yapılandırmaya yönelik güçlü
+ve kullanışlı bir sınıftır. Hangi URL'lerin korunması gerektiğini ve kimlik doğrulama ile yetkilendirmenin nasıl
+ele alınması gerektiğini belirlemenize olanak tanır ve Spring Security çerçevesinin geri kalanıyla sorunsuz bir
+şekilde entegre olur.
+
+                                  SecurityFilterChain nedir ?
+
+Bir web uygulamasındaki her bir isteğe uygulanması gereken filtreleri yapılandırmak için Spring Security çerçevesindeki
+önemli bir sınıftır. Filtrelerin uygulanması gereken sırayı belirlemenize olanak tanır ve Spring Security çerçevesinin
+geri kalanıyla sorunsuz bir şekilde entegre olur.
+
+                                   httpSecurity.cors() nedir ?
+
+Bir Spring Boot uygulamasında CORS desteğini etkinleştirmek için kullanışlı bir yöntemdir. Uygulamanızın çapraz kaynak
+paylaşımı ile ilgili sorunlarla karşılaşmadan çapraz etki alanı istekleri yapmasına olanak tanır.
+
+                                    AuthenticationManager nedir ?
+
+AuthenticationManager, bir kullanıcının kimlik bilgilerinin doğrulanmasından sorumlu olan bu çerçevenin önemli bir
+bileşenidir. Genellikle kullanıcı tarafından girilen kullanıcı adı ve parolayı kayıtlı kullanıcılardan oluşan bir
+veritabanına karşı doğrulamak için kullanılır. Kullanıcının kimlik bilgileri geçerliyse, AuthenticationManager
+kullanıcıya uygulamadaki korunan kaynaklara erişim izni verir.
+
+                                    PasswordEncoder nedir ?
+
+PasswordEncoder, parolaları güvenli bir şekilde kodlamak için kullanılan bir bileşendir. Bir kullanıcı bir uygulamaya
+kaydolduğunda, parolası genellikle veritabanında saklanmadan önce bir PasswordEncoder kullanılarak şifrelenir.
+Bu, parolanın veritabanına erişimi olan herhangi biri tarafından okunamamasını sağlar. Kullanıcı oturum açmaya
+çalıştığında, PasswordEncoder girdiği parolayı kodlamak ve veritabanında saklanan şifrelenmiş sürümle karşılaştırmak
+için kullanılır. Kodlanmış parolalar eşleşirse, kullanıcının kimliği doğrulanır ve uygulamadaki korunan
+kaynaklara erişim izni verilir.
+
+                                    BCryptPasswordEncoder nedir ?
+
+BCryptPasswordEncoder, Spring Framework'te PasswordEncoder arayüzünü uygulayan bir sınıftır. BCrypt karma algoritmasını
+kullanarak parolaları kodlamak için güvenli bir yol sağlar. Bir kullanıcı bir uygulamaya kaydolduğunda, parolası
+BCryptPasswordEncoder kullanılarak şifrelenir ve elde edilen hash veritabanında saklanır. Kullanıcı oturum açmaya
+çalıştığında, BCryptPasswordEncoder girdikleri parolayı kodlamak ve veritabanında saklanan şifrelenmiş sürümle
+karşılaştırmak için kullanılır. Kodlanmış parolalar eşleşirse, kullanıcının kimliği doğrulanır ve uygulamadaki korunan
+kaynaklara erişim izni verilir.
+
+                                         BCrypt Algoritması ?
+
+BCrypt, kaba kuvvet saldırılarına karşı dayanıklı olacak şekilde tasarlanmış bir parola karma algoritmasıdır.
+Bir saldırganın birçok farklı kombinasyon deneyerek bir parolayı tahmin etmesini zorlaştırmak için tuzlama adı
+verilen bir anahtar germe tekniği kullanır. Algoritma ayrıca her parola için güvenli bir rastgele tuz içerir, bu da bir
+saldırganın ortak parolalar sözlüğü için önceden karma hesaplamasını zorlaştırır. BCrypt yaygın olarak kullanılan ve
+saygı duyulan bir parola karma algoritmasıdır ve parola depolama için yaygın olarak kullanılan diğer birçok
+algoritmadan daha güvenli olduğu düşünülmektedir.
+
+
+- - - - - - - - - - - - -
+
+OpenApiConfig 1-)
+
+                                       securitySchemeName nedir ?
+
+Bir API bağlamında güvenlik şeması, API'ye yapılan istekleri doğrulamanın ve yetkilendirmenin bir yoludur.
+Farklı güvenlik şemalarının farklı gereksinimleri vardır ve farklı güvenlik seviyeleri sağlarlar. Örneğin, bir API
+basit bir kullanıcı adı ve parola kimlik doğrulama şeması kullanabilir veya OAuth2 gibi daha karmaşık
+bir şema kullanabilir. Güvenlik şeması adı, bir API içindeki belirli bir güvenlik şemasını tanımlamanın bir yoludur.
+Bu ad, geliştiriciler tarafından API içindeki belirli bir uç nokta veya işlem için hangi güvenlik şemasının
+kullanılacağını belirtirken kullanılabilir. Farklı güvenlik şemaları, nasıl uygulandıklarına ve yapılandırıldıklarına
+bağlı olarak farklı adlara sahip olabilir.

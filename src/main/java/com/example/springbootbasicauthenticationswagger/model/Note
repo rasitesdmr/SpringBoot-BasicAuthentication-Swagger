@@ -1,0 +1,11 @@
+- - - - - - - - - - - - -
+
+User 1 -)
+
+                                           @ToString.Exclude ?
+
+Bir user sınıfımızın olduğunu varsayalım. id,name ve email alanına sahipler. email alanına @ToString.Exclude açıklaması
+eklersek, user sınıfının bir örneği üzerinden toString() yöntemini çağırdığımızda email bilgisi çıktıya dahil edilmez.
+Kısacası toString() yöntemi çıktısına dahil edilmesini engellemek için kullanılır.
+
+- - - - - - - - - - - - -
